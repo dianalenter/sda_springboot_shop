@@ -2,6 +2,7 @@ package com.sda.dianalenter.webshop;
 
 import com.sda.dianalenter.webshop.model.Account;
 import com.sda.dianalenter.webshop.service.CustomerService;
+import com.sda.dianalenter.webshop.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class WebshopApplication implements CommandLineRunner {
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private MailService mailService;
 
 
     public static void main(String[] args) {
@@ -31,6 +35,10 @@ public class WebshopApplication implements CommandLineRunner {
 
         customerService.getCustomerAccounts().forEach(System.out::println);
 
+        mailService.sendMail("dianacurca20@gmail.com",
+                "liviu@gmail.com",
+                "Mock mail subject",
+                "Mock mail subject");
     }
 
 }
