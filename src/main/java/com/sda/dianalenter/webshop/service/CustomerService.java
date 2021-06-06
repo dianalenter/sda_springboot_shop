@@ -17,7 +17,7 @@ public class CustomerService {
     public void addCustomer(Account account){
         accountRepository.save(account );
     }
-    public List<Account> getCustomerAccounts(){
-        return accountRepository.getAll();
+    public Iterable<Account> getCustomerAccounts(){
+        return accountRepository.findAll();
     }
 }

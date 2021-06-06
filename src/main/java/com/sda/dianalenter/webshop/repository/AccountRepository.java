@@ -1,18 +1,10 @@
 package com.sda.dianalenter.webshop.repository;
 
+
 import com.sda.dianalenter.webshop.model.Account;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface AccountRepository extends CrudRepository<Account, Long> {
 
-@Repository
-public class AccountRepository {
-    private List<Account> accounts = new ArrayList<>();
-    public List<Account> getAll(){
-        return accounts;
-    }
-    public void save(Account account){
-        accounts.add(account);
-    }
+
 }
