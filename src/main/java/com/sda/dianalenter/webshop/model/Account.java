@@ -13,11 +13,11 @@ public class Account {
     private Long id;
     @Column(name = "billing_address")
     private String billingAddress;
-    @Column(name = " is_closed")
+    @Column(name = "is_closed")
     private Boolean isClosed;
-    @Column(name = " creation_date")
+    @Column(name = "creation_date")
     private Date creationDate;
-    @Column(name = " close_date")
+    @Column(name = "closed_date")
     private Date closedDate;
 
 

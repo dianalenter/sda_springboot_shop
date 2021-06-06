@@ -1,6 +1,7 @@
 package com.sda.dianalenter.webshop;
 
 import com.sda.dianalenter.webshop.model.Account;
+import com.sda.dianalenter.webshop.repository.AccountRepository;
 import com.sda.dianalenter.webshop.service.CustomerService;
 import com.sda.dianalenter.webshop.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class WebshopApplication implements CommandLineRunner {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(WebshopApplication.class, args);
@@ -37,7 +41,7 @@ public class WebshopApplication implements CommandLineRunner {
         //put here your code
         Account account1 = new Account();
         account1.setId(1L);
-        customerService.addCustomer(account1);
+      //  customerService.addCustomer(account1);
 
         customerService.getCustomerAccounts().forEach(System.out::println);
 
@@ -45,6 +49,10 @@ public class WebshopApplication implements CommandLineRunner {
                 "liviu@gmail.com",
                 "Mock mail subject",
                 "Mock mail subject");
+
+        accountRepository.findAllByIsClosed(false).forEach(System.out::println);
+        accountRepository.findAllByBillingAddressIsContaining("Hu").forEach(System.out::println);
+
     }
 
 }
