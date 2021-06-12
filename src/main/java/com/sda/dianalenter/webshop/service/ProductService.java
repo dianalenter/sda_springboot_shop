@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -28,5 +29,8 @@ public class ProductService {
 
         //return new ArrayList<Product>((Collection<? extends Product>) productRepository.findAll());
         return StreamSupport.stream(productRepository.findAll().spliterator(),false).collect(Collectors.toList());
+    }
+    public  Optional<Product> findById(Long productId){
+        return (productRepository.findById(productId));
     }
 }

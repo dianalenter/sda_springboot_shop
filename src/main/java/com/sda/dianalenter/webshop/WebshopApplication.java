@@ -1,4 +1,4 @@
-package com.sda.dianalenter.webshop;
+/**package com.sda.dianalenter.webshop;
 
 import com.sda.dianalenter.webshop.model.Account;
 import com.sda.dianalenter.webshop.model.Customer;
@@ -73,4 +73,4 @@ public class WebshopApplication implements CommandLineRunner {
         orderService.save(customer1, Arrays.asList(product1));
     }
 
-}
+}**/
