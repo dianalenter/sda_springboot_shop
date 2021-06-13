@@ -8,6 +8,7 @@ import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class ProductCpntroller {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product>getProductId(@PathVariable(value = "id") Long productId) throws ResourceNotFoundException {
+    public ResponseEntity<Product> getProductId(@PathVariable(value = "id") Long productId) throws ResourceNotFoundException {
         Optional<Product> product = productService.findById(productId);
         if (product.isPresent()) {
             return ResponseEntity.ok(product.get());
@@ -36,7 +37,7 @@ public class ProductCpntroller {
     }
 
     @PostMapping("/products")
-    public String createProduct(@RequestBody Product product) {
+    public String createProduct(@Valid @RequestBody Product product) {
         productService.save(product);
         return "Product saved";
     }
