@@ -1,9 +1,11 @@
 package com.sda.dianalenter.webshop.controller;
 
 
+import com.sda.dianalenter.webshop.error.ResourceNotFoundException;
 import com.sda.dianalenter.webshop.model.Product;
 import com.sda.dianalenter.webshop.service.ProductService;
 import javassist.NotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,23 +22,23 @@ public class ProductCpntroller {
     }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return  productService.findAll();
+    public List<Product> getAllProducts() {
+        return productService.findAll();
     }
 
     @GetMapping("/products/{id}")
-    public  Product getProductById(@PathVariable(value = "id") Long productId){
+    public ResponseEntity<Product>getProductId(@PathVariable(value = "id") Long productId) throws ResourceNotFoundException {
         Optional<Product> product = productService.findById(productId);
-        if(product.isPresent()){
-            return product.get();
+        if (product.isPresent()) {
+            return ResponseEntity.ok(product.get());
         }
-        throw new IllegalArgumentException();
+        throw new ResourceNotFoundException("product with id: " + productId + " was not found!");
     }
 
     @PostMapping("/products")
-    public String createProduct(@RequestBody Product product){
-         productService.save(product);
-         return "Product saved";
+    public String createProduct(@RequestBody Product product) {
+        productService.save(product);
+        return "Product saved";
     }
 
 }
